@@ -1,13 +1,10 @@
 # Genetic-Salesman-Algorithm
+A visualisation of how the travelling salesman problem can be solved using a genetic algorithms of paths.
 ## Selection Algorithms
-- Truncation selection
-This is the selection that takes the top % of the paths and cuts off the rest.
-- Roulette Wheel Selection
-This is the selection that gives weighted probablities based on a path's "fitness"
-- Stochastic Universal Sampling
-This is similar to roulette wheel selection but it uses a equal sampling
-- tournamentSelection
-This gives probabilities to each of the different paths and has everything normalized so that everything adds up to 1.
+- Truncation selection<br>
+- Roulette Wheel Selection<br>
+- Stochastic Universal Sampling<br>
+- tournamentSelection<br>
 ## Crossover algorithms
 - Partially Mapped Crossover
 - Order crossover
