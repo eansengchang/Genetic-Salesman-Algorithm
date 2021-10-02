@@ -72,6 +72,8 @@ function setup() {
 	lengthP = createP()
 	generationP = createP()
 
+	createA("https://github.com/eansengchang/Genetic-Salesman-Algorithm", "Link to github code").position(620, 30)
+
 	restart()
 }
 
