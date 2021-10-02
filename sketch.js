@@ -1,11 +1,10 @@
 let selection;
 let crossover;
 let newGenBut;
-let frameRateP;
-let lengthP;
+let frameRateP, lengthP, generationP;
 let pointNumInput;
-let mutationSlider;
-let poolFracSlider;
+let matingPoolSlider, poolFracSlider;
+let startGenerationFrame = 0
 
 let pointNumber = 20
 let routeNumber = 200
@@ -49,16 +48,16 @@ function setup() {
 	selection.option("Roulette Wheel Selection")
 	selection.option("Stochastic Universal Sampling")
 	selection.option("Tournament Selection")
-	selection.selected("Tournament Selection")
+	selection.selected("Truncation Selection")
 
 	crossover = createSelect().size(200, 40).position(840, 450)
 	crossover.option("Partially Mapped Crossover")
 	crossover.option("Order Crossover")
 	crossover.option("Cycle Crossover")
-	crossover.selected("Order Crossover")
+	crossover.selected("Partially Mapped Crossover")
 
-	mutationSlider = createSlider(0, 1, 0.15, 0.01).position(620, 300).size(190, 20)
-	createP("Mutation pool percentage").position(840, 260)
+	matingPoolSlider = createSlider(0, 1, 0.15, 0.01).position(620, 300).size(190, 20)
+	createP("Mating pool percentage").position(840, 260)
 
 	poolFracSlider = createSlider(0.01, 1, 0.5, 0.01).position(840, 300).size(190, 20)
 	createP("Mutation rate").position(620, 260)
@@ -71,11 +70,13 @@ function setup() {
 
 	frameRateP = createP(`Framerate: ${frameRate()} generations per second`)
 	lengthP = createP()
+	generationP = createP()
 
 	restart()
 }
 
 function restart() {
+	startGenerationFrame = frameCount
 	background(51)
 	routes = []
 	points = []
@@ -113,7 +114,8 @@ function restart() {
 function draw() {
 	nextGeneration()
 	frameRateP.html(`Framerate: ${round(frameRate())} generations per second`)
-	mutationRate = mutationSlider.value()
+	generationP.html(`Genration: ${frameCount - startGenerationFrame}`)
+	mutationRate = matingPoolSlider.value()
 	matingPoolFraction = poolFracSlider.value()
 }
 
